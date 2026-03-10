@@ -1,7 +1,7 @@
-# HexIT Recall — AI Memory System
+# HexIT Recall
 
 ## What It Does
-HexIT Recall provides long-term semantic memory for your AI assistant. It runs 100% locally using Ollama embeddings — no data leaves your server.
+Long-term semantic memory for your AI assistant. Runs 100% locally using Ollama embeddings. No data leaves your server.
 
 ## Setup
 Run the setup script to install Ollama, pull the embedding model, and create the memory file structure:
@@ -14,12 +14,12 @@ bash skills/hexit-recall/scripts/setup.sh
 ## Memory Structure
 
 Your workspace will have:
-- `MEMORY.md` — Long-term curated memories (key facts, preferences, decisions)
-- `memory/YYYY-MM-DD.md` — Daily structured logs (decisions, completions, corrections)
-- `memory/lessons.md` — Tracked mistakes and learnings
-- `memory/preferences.md` — User preferences (auto-extracted)
-- `memory/observations.json` — Pattern index from daily interactions
-- `memory/learning-queue.md` — Topics for the AI to explore
+- `MEMORY.md` - long-term curated memories (key facts, preferences, decisions)
+- `memory/YYYY-MM-DD.md` - daily structured logs (decisions, completions, corrections)
+- `memory/lessons.md` - tracked mistakes and learnings
+- `memory/preferences.md` - user preferences (auto-extracted)
+- `memory/observations.json` - pattern index from daily interactions
+- `memory/learning-queue.md` - topics for the AI to explore
 
 ## How Memory Works
 
@@ -30,25 +30,25 @@ Your workspace will have:
 
 ### Maintenance Scripts (run periodically)
 
-**Memory Decay** — keeps memories fresh by scoring relevance over time:
+**Memory Decay** - keeps memories fresh by scoring relevance over time:
 ```bash
-npx tsx scripts/memory-decay.ts update    # Update scores
-npx tsx scripts/memory-decay.ts status    # View current scores
+npx tsx scripts/memory-decay.ts update    # update scores
+npx tsx scripts/memory-decay.ts status    # view current scores
 ```
-Recommended: Run twice weekly via cron.
+Recommended: run twice weekly via cron.
 
-**Observation Indexer** — extracts patterns from daily logs:
+**Observation Indexer** - extracts patterns from daily logs:
 ```bash
-node scripts/observations-indexer.js       # Index today
-node scripts/observations-indexer.js --all # Re-index everything
+node scripts/observations-indexer.js       # index today
+node scripts/observations-indexer.js --all # re-index everything
 ```
-Recommended: Run nightly via cron.
+Recommended: run nightly via cron.
 
-**Self-Improvement Synthesis** — analyzes mistakes and generates improvement proposals:
+**Self-Improvement Synthesis** - analyzes mistakes and generates improvement proposals:
 ```bash
 npx tsx scripts/synthesize.ts
 ```
-Recommended: Run weekly.
+Recommended: run weekly.
 
 ## Clawdbot Config
 
@@ -75,7 +75,7 @@ Add to your `clawdbot.json` under agent defaults:
 For automated maintenance, add these cron jobs:
 
 ```bash
-# Memory decay (twice weekly, e.g., Wed + Sun)
+# Memory decay (twice weekly, e.g. Wed + Sun)
 0 22 * * 0,3  cd ~/clawd && npx tsx scripts/memory-decay.ts update
 
 # Observation indexer (nightly)
@@ -113,8 +113,8 @@ Each day, the AI should update `memory/YYYY-MM-DD.md` with:
 ## Privacy
 - All embeddings computed locally via Ollama
 - No external API calls for memory operations
-- All data stored as plain markdown files on your server
-- Fully portable — copy the files anywhere
+- All data stored as plain markdown on your server
+- Fully portable. Copy the files anywhere.
 
 ## Requirements
 - Node.js 18+

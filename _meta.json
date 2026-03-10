@@ -1,10 +1,6 @@
 {
-  "owner": "hexitlabs",
   "slug": "hexit-recall",
   "displayName": "HexIT Recall",
-  "description": "Long-term semantic memory for AI assistants — 100% local, powered by Ollama",
-  "latest": {
-    "version": "1.0.0"
-  },
-  "history": []
+  "description": "Long-term semantic memory for AI assistants, 100% local, powered by Ollama",
+  "version": "1.0.0"
 }

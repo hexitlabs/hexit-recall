@@ -1,14 +1,11 @@
 {
   "name": "hexit-recall",
   "version": "1.0.0",
-  "description": "Long-term semantic memory for AI assistants — 100% local, powered by Ollama",
+  "description": "Long-term semantic memory for AI assistants. 100% local, powered by Ollama.",
   "type": "module",
   "main": "scripts/index.js",
   "bin": {
-    "recall-setup": "./scripts/setup.sh",
-    "recall-decay": "./scripts/run-decay.sh",
-    "recall-index": "./scripts/run-indexer.sh",
-    "recall-synthesize": "./scripts/run-synthesize.sh"
+    "recall-setup": "./scripts/setup.sh"
   },
   "scripts": {
     "setup": "./scripts/setup.sh",

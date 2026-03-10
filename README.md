@@ -2,21 +2,21 @@
 
 **Long-term semantic memory for AI assistants.**
 
-HexIT Recall gives your AI assistant persistent, searchable memory that runs 100% locally on your server. Your AI remembers conversations, learns preferences, and gets smarter over time — with zero data leaving your machine.
+Give your AI assistant persistent, searchable memory that runs 100% on your own server. It remembers conversations, picks up on preferences, and improves over time. Nothing leaves your machine.
 
 ## Features
 
-- **Semantic Search** — Find memories by meaning, not just keywords
-- **Daily Memory Logs** — Automatic structured daily journals
-- **Memory Decay** — Old memories fade naturally, keeping context fresh and relevant
-- **Observation Indexing** — Extracts patterns and insights from daily interactions
-- **Self-Improvement Loop** — AI analyzes its own mistakes and learns from corrections
-- **100% Local** — Powered by Ollama + nomic-embed-text. No cloud, no data sharing, no API costs
-- **Clawdbot Skill** — One command install, works out of the box
+- **Semantic Search** - finds memories by meaning, not keywords
+- **Daily Memory Logs** - structured daily journals, auto-generated
+- **Memory Decay** - old memories fade naturally so context stays relevant
+- **Observation Indexing** - pulls patterns and insights from daily interactions
+- **Self-Improvement** - tracks its own mistakes and learns from corrections
+- **100% Local** - runs on Ollama + nomic-embed-text. No cloud calls, no data sharing, no API costs
+- **Clawdbot Skill** - one command install
 
 ## Quick Start
 
-### As a Clawdbot Skill (recommended)
+### As a Clawdbot Skill
 
 ```bash
 clawdbot skills install hexit-recall
@@ -25,14 +25,9 @@ clawdbot skills install hexit-recall
 ### Manual Install
 
 ```bash
-# 1. Clone the repo
 git clone https://github.com/hexitlabs/hexit-recall.git
 cd hexit-recall
-
-# 2. Run setup
 ./scripts/setup.sh
-
-# 3. Follow the prompts
 ```
 
 ## What Gets Installed
@@ -42,8 +37,8 @@ cd hexit-recall
 | Ollama | Local inference engine (free, open source) |
 | nomic-embed-text | Embedding model for semantic search |
 | Memory file structure | MEMORY.md, daily logs, observations |
-| Memory decay | Automatic relevance scoring over time |
-| Observation indexer | Extracts patterns from daily interactions |
+| Memory decay | Relevance scoring over time |
+| Observation indexer | Pattern extraction from daily interactions |
 | Self-improvement loop | Learns from corrections and mistakes |
 
 ## Architecture
@@ -53,32 +48,32 @@ Your Server (100% local)
 ├── Ollama (embedding engine)
 │   └── nomic-embed-text (384-dim embeddings)
 ├── Memory Files
-│   ├── MEMORY.md          — Long-term curated memories
+│   ├── MEMORY.md            # curated long-term memories
 │   ├── memory/
-│   │   ├── YYYY-MM-DD.md  — Daily structured logs
-│   │   ├── observations.json — Extracted patterns
-│   │   ├── lessons.md     — Mistakes & learnings
-│   │   ├── preferences.md — User preferences
-│   │   └── learning-queue.md — Topics to explore
-│   └── sessions/          — Conversation transcripts
+│   │   ├── YYYY-MM-DD.md    # daily structured logs
+│   │   ├── observations.json # extracted patterns
+│   │   ├── lessons.md       # mistakes and learnings
+│   │   ├── preferences.md   # user preferences
+│   │   └── learning-queue.md # topics to explore
+│   └── sessions/            # conversation transcripts
 └── Scripts
-    ├── memory-decay.ts    — Relevance scoring
-    ├── observations-indexer.js — Pattern extraction
-    └── synthesize.ts      — Self-improvement synthesis
+    ├── memory-decay.ts      # relevance scoring
+    ├── observations-indexer.js # pattern extraction
+    └── synthesize.ts        # self-improvement synthesis
 ```
 
-## Memory Lifecycle
+## How It Works
 
-1. **Capture** — Every conversation is logged to daily memory files
-2. **Index** — Observations are extracted and indexed for semantic search
-3. **Search** — When the AI needs context, it searches by meaning across all memories
-4. **Decay** — Older, less-accessed memories gradually lose relevance weight
-5. **Synthesize** — Weekly analysis identifies patterns, mistakes, and improvement opportunities
-6. **Prune** — Stale sessions are cleaned up to keep the system fast
+1. **Capture** - conversations get logged to daily memory files
+2. **Index** - observations are extracted and indexed for semantic search
+3. **Search** - when context is needed, it searches by meaning across all memories
+4. **Decay** - older, less-accessed memories gradually lose relevance weight
+5. **Synthesize** - weekly analysis spots patterns, mistakes, and improvement areas
+6. **Prune** - stale sessions get cleaned up to keep things fast
 
 ## Configuration
 
-HexIT Recall adds these settings to your `clawdbot.json`:
+Add to your `clawdbot.json`:
 
 ```json
 {
@@ -96,8 +91,6 @@ HexIT Recall adds these settings to your `clawdbot.json`:
 ```
 
 ## Memory File Templates
-
-HexIT Recall creates structured templates for consistent memory formatting:
 
 ### Daily Log (memory/YYYY-MM-DD.md)
 ```markdown
@@ -124,58 +117,49 @@ HexIT Recall creates structured templates for consistent memory formatting:
 # Lessons Learned
 
 ## ❌ Mistakes
-- [Date] [What went wrong] — [What to do instead]
+- [Date] What went wrong -> What to do instead
 
 ## ✅ Learnings
-- [Date] [What worked well] — [Why it worked]
+- [Date] What worked well -> Why it worked
 ```
 
 ## Scripts
 
 ### Memory Decay
 ```bash
-# Update decay scores (run weekly)
-npx tsx scripts/memory-decay.ts update
-
-# View current scores
-npx tsx scripts/memory-decay.ts status
+npx tsx scripts/memory-decay.ts update   # update decay scores
+npx tsx scripts/memory-decay.ts status   # view current scores
 ```
 
 ### Observation Indexer
 ```bash
-# Index today's observations
-node scripts/observations-indexer.js
-
-# Re-index all
-node scripts/observations-indexer.js --all
+node scripts/observations-indexer.js       # index today
+node scripts/observations-indexer.js --all # re-index everything
 ```
 
 ### Self-Improvement Synthesis
 ```bash
-# Run weekly synthesis
 npx tsx scripts/synthesize.ts
 ```
 
 ## Privacy
 
-HexIT Recall is designed with privacy as a core principle:
-
-- **All data stays on your server** — nothing is sent to external services
-- **Ollama runs locally** — embeddings are computed on your machine
-- **No telemetry** — we don't track usage or collect any data
-- **You own everything** — all memory files are plain markdown, fully portable
+- All data stays on your server. Nothing gets sent anywhere.
+- Ollama runs locally. Embeddings are computed on your machine.
+- No telemetry. No tracking.
+- Everything is plain markdown files. Fully portable, copy them wherever you want.
 
 ## Requirements
 
 - Node.js 18+
 - 4GB+ RAM (for Ollama + nomic-embed-text)
-- ~2GB disk space (Ollama + model)
-- Linux (Ubuntu 22.04+ recommended) or macOS
+- ~2GB disk (Ollama + model)
+- Linux (Ubuntu 22.04+) or macOS
 
 ## License
 
-MIT — Use it however you want.
+MIT
 
 ## Built by HexIT Labs 🔷
 
-Part of the HexIT AI infrastructure suite. Also check out [Vigil](https://github.com/hexitlabs/vigil) — AI agent safety firewall.
+Part of the HexIT AI tooling stack. See also: [Vigil](https://github.com/hexitlabs/vigil) (AI agent safety firewall).
